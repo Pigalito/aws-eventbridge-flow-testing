@@ -9,10 +9,10 @@ terraform {
 
 terraform {
   backend "remote" {
-    organization = ""
+    organization = "HackettIncorporated"
 
     workspaces {
-      name = ""
+      name = "HackettIncorporatedAWS"
     }
   }
 }
@@ -22,11 +22,24 @@ provider "aws" {
   region  = "us-east-2"
 }
 
+module "iam" {
+  source = "./services/iam"
+}
+
 module "eventbridge" {
   source                     = "./services/eventbridge"
   sqs_eventbridge_target_arn = module.sqs.sqs_eventbridge_target_arn
 }
 
+module "lambda" {
+  source                       = "./services/lambda"
+  deployment_bucket            = var.deployment_bucket
+  sqs_target_iam_role          = module.iam.lambda_role_arn
+  trigger_eventbridge_iam_role = module.iam.lambda_role_arn
+  sqs_eventbridge_target_arn   = module.sqs.sqs_eventbridge_target_arn
+}
+
 module "sqs" {
   source = "./services/sqs"
 }
+

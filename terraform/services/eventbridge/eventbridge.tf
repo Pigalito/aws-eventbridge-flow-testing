@@ -8,7 +8,7 @@ module "standard_bus_sqs_trigger" {
   event_pattern  = <<EOF
 {
   "detail-type": [
-    "AWS Console Sign In via CloudTrail"
+    "Event triggered from dedicated lambda"
   ]
 }
 EOF
