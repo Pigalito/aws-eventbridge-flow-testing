@@ -17,3 +17,8 @@ resource "aws_iam_role_policy_attachment" "eventbridge_firehose_policy_role_atta
   role       = aws_iam_role.eventbridge_firehose_role.name
   policy_arn = aws_iam_policy.put_record_firehose_policy.arn
 }
+
+resource "aws_iam_role_policy_attachment" "firehose_s3_policy_role_attachment" {
+  role       = aws_iam_role.firehose_role.name
+  policy_arn = aws_iam_policy.full_access_s3_policy.arn
+}

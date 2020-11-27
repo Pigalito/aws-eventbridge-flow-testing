@@ -82,3 +82,23 @@ resource "aws_iam_policy" "put_record_firehose_policy" {
 }
 EOF
 }
+
+resource "aws_iam_policy" "full_access_s3_policy" {
+  name        = "full_access_s3_policy"
+  description = "Full access to s3"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
