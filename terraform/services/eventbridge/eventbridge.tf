@@ -22,7 +22,7 @@ EOF
 }
 
 module "standard_bus_firehose_trigger" {
-  source = "./rules"
+  source         = "./rules"
   event_pattern  = <<EOF
 {
   "detail-type": [
@@ -34,5 +34,5 @@ EOF
   description    = "Passes all events to S3 via Kinesis firehose"
   event_bus_name = "standard-bus"
   target_arn     = var.eventbridge_s3_firehose_stream_arn
-  role_arn  = var.eventbridge_firehose_role_arn
+  role_arn       = var.eventbridge_firehose_role_arn
 }

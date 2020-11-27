@@ -27,5 +27,5 @@ resource "aws_lambda_event_source_mapping" "sqs" {
   count            = var.include_sqs
   event_source_arn = var.sqs_queue_arn
   function_name    = aws_lambda_function.lambda.arn
-  batch_size = 1
+  batch_size       = 1
 }
