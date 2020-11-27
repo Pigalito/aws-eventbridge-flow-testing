@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SQS_PACKAGE_VERSION=$(node -p -e "require('./lambdas/sqs-target/package.json').version")
-EVENT_BRIDGE_PACKAGE_VERSION=$(node -p -e "require('./lambdas/sqs-target/package.json').version")
+EVENT_BRIDGE_PACKAGE_VERSION=$(node -p -e "require('./lambdas/trigger-eventbridge/package.json').version")
 
 cd ./lambdas/sqs-target
 zip -r ../../packages/sqs-target.zip ./

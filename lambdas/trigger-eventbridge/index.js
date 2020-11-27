@@ -9,17 +9,21 @@ exports.handler = async (event, context, cb) => {
 
     const arn = context.invoked_function_arn;
     const eventBusName = process.env.event_bus_name;
+
+    const date = new Date();
     
     var params = {
       Entries: [
         {
           Detail: JSON.stringify({
-              loyalty: (new Date().getTime()) % 2 === 1
+              booleanVal: (date.getTime()) % 2 === 1
           }),
           DetailType: "Event triggered from dedicated lambda",
           EventBusName: eventBusName,
-          Time: new Date(),
-          Resources: [arn]
+          Time: date,
+          Resources: [arn],
+          // Source is required but not authorised to use 'aws.lambda' so 'com.business' it is!
+          Source: 'com.business'
         }
       ]
     };
