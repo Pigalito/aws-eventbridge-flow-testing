@@ -6,7 +6,7 @@ variable "deployment_bucket" {}
 
 // Optional variables for all lambdas
 variable "env_vars" {
-  default = {}
+  default = null
 }
 variable "lambda_version" {
   default = "1.0.0"

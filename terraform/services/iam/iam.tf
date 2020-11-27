@@ -62,6 +62,28 @@ resource "aws_iam_policy" "eventbridge_lambda_policy" {
 EOF
 }
 
+resource "aws_iam_policy" "sqs_lambda_policy" {
+  name        = "sqs_lambda_policy"
+  description = "Access to receive messages from sqs"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sqs:ReceiveMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:DeleteMessage"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
 resource "aws_iam_role_policy_attachment" "cloudwatch_lambda_policy_role_attachment" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.cloudwatch_lambda_policy.arn
@@ -70,4 +92,9 @@ resource "aws_iam_role_policy_attachment" "cloudwatch_lambda_policy_role_attachm
 resource "aws_iam_role_policy_attachment" "eventbridge_lambda_policy_role_attachment" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.eventbridge_lambda_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "sqs_lambda_policy_role_attachment" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = aws_iam_policy.sqs_lambda_policy.arn
 }

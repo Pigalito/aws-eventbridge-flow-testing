@@ -43,3 +43,7 @@ module "sqs" {
   source = "./services/sqs"
 }
 
+module "s3" {
+  source = "./services/s3"
+  events_bucket_name = var.events_bucket_name
+}
