@@ -10,8 +10,10 @@ module "standard_bus_sqs_trigger" {
   "detail-type": [
     "Event triggered from dedicated lambda"
   ],
-  "detail":{
-    "booleanVal":[true]
+  "detail": {
+    "booleanVal": [
+      true
+    ]
   }
 }
 EOF
