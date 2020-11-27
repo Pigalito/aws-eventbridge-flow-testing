@@ -3,7 +3,7 @@ resource "aws_lambda_function" "lambda" {
   s3_key        = "lambdas/${var.name}-${var.lambda_version}.zip"
   function_name = var.name
   role          = var.iam_role
-  handler       = "exports.handler"
+  handler       = "index.handler"
   runtime       = "nodejs12.x"
 
   dynamic "environment" {
