@@ -29,6 +29,7 @@ module "iam" {
 module "eventbridge" {
   source                             = "./services/eventbridge"
   sqs_eventbridge_target_arn         = module.sqs.sqs_eventbridge_target_arn
+  trigger_eventbridge_lambda_arn     = module.lambda.trigger_eventbridge_lambda_arn
   eventbridge_firehose_role_arn      = module.iam.eventbridge_firehose_role_arn
   eventbridge_s3_firehose_stream_arn = module.kinesis.eventbridge_s3_firehose_stream_arn
 }
