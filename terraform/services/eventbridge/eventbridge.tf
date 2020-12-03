@@ -4,11 +4,11 @@ module "standard_bus" {
 }
 
 module "standard_bus_trigger_eventbridge_trigger" {
-  source         = "./rules"
+  source              = "./rules"
   schedule_expression = "cron(0 0 * * ? *)"
-  name           = "standard-to-lambda-trigger-eventbridge"
-  description    = "Triggers the lambda for getting events at midnight everyday"
-  target_arn     = var.trigger_eventbridge_lambda_arn
+  name                = "standard-to-lambda-trigger-eventbridge"
+  description         = "Triggers the lambda for getting events at midnight everyday"
+  target_arn          = var.trigger_eventbridge_lambda_arn
 }
 
 module "standard_bus_sqs_trigger" {
@@ -30,7 +30,7 @@ EOF
   event_bus_name = "standard-bus"
   target_arn     = var.sqs_eventbridge_target_arn
   input_transformer = {
-    input_paths    = {
+    input_paths = {
       booleanVal = "$.detail.boolean"
     }
     input_template = <<EOF
@@ -56,7 +56,7 @@ EOF
   target_arn     = var.eventbridge_s3_firehose_stream_arn
   role_arn       = var.eventbridge_firehose_role_arn
   input_transformer = {
-    input_paths    = {
+    input_paths = {
       detail = "$.detail"
     }
     input_template = <<EOF

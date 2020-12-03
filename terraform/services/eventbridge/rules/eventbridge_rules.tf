@@ -1,8 +1,8 @@
 resource "aws_cloudwatch_event_rule" "rule" {
-  name           = var.name
-  description    = var.description
-  event_pattern  = var.event_pattern
-  event_bus_name = var.event_bus_name
+  name                = var.name
+  description         = var.description
+  event_pattern       = var.event_pattern
+  event_bus_name      = var.event_bus_name
   schedule_expression = var.schedule_expression
 }
 
@@ -16,7 +16,7 @@ resource "aws_cloudwatch_event_target" "target" {
     for_each = local.input_transformer
 
     content {
-      input_paths = input_transformer.value.input_paths
+      input_paths    = input_transformer.value.input_paths
       input_template = input_transformer.value.input_template
     }
   }
