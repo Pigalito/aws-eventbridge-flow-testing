@@ -7,6 +7,10 @@ resource "aws_cloudwatch_event_rule" "rule" {
 }
 
 resource "aws_cloudwatch_event_target" "target" {
+  depends_on     = [
+    aws_cloudwatch_event_rule.rule
+  ]
+  
   rule           = var.name
   arn            = var.target_arn
   event_bus_name = var.event_bus_name
