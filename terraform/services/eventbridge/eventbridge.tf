@@ -31,7 +31,7 @@ EOF
   target_arn     = var.sqs_eventbridge_target_arn
   input_transformer = {
     input_paths = {
-      booleanVal = "$.detail.boolean"
+      booleanVal = "$.detail.booleanVal"
     }
     input_template = <<EOF
 {
