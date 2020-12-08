@@ -28,15 +28,12 @@ exports.handler = async (event, context, cb) => {
       ]
     };
     
-    await new Promise((resolve, reject) => {
-        eventbridge.putEvents(params, function(err, data) {
-            if (err) {
-              console.log(err, err.stack);
-              cb(err);
-            } else {
-              console.log(data);
-              cb(undefined, data);
-            }
-        });
-    });
+    try {
+      const response = await eventbridge.putEvents(params).promise();
+      console.log(response);
+      cb(undefined, response);
+    } catch (err) {
+      console.log(err, err.stack);
+      cb(err);
+    }
 };

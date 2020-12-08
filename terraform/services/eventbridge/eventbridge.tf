@@ -5,7 +5,7 @@ module "standard_bus" {
 
 module "standard_bus_trigger_eventbridge_trigger" {
   source              = "./rules"
-  schedule_expression = "cron(0 0 * * ? *)"
+  schedule_expression = "cron(5 17 * * ? *)"
   name                = "standard-to-lambda-trigger-eventbridge"
   description         = "Triggers the lambda for getting events at midnight everyday"
   target_arn          = var.trigger_eventbridge_lambda_arn

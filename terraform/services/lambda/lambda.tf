@@ -11,7 +11,7 @@ module "sqs_target_lambda" {
 module "trigger_eventbridge_lambda" {
   source            = "./function"
   name              = "trigger-eventbridge"
-  lambda_version    = "1.0.3"
+  lambda_version    = "1.0.4"
   iam_role          = var.trigger_eventbridge_iam_role
   deployment_bucket = var.deployment_bucket
   env_vars = {
